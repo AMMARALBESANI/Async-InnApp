@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\HotelAppDemo",
+    "\\HotelAppDemo\\Data",
+    "\\HotelAppDemo\\Model"
   ],
+  "SelectedNode": "\\HotelAppDemo\\Model",
   "PreviewInSolutionExplorer": false
 }

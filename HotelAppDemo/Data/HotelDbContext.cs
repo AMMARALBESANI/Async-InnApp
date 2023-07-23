@@ -7,7 +7,6 @@ namespace HotelAppDemo.Data
 {
     public class HotelDbContext : DbContext
     {
-        //1-create class to be gate between our app and database it must inherate DbContext form entity backage
 
         // 2-create a constractor and give it a parameter DbContextOptions will take different configrations for database 
         public HotelDbContext(DbContextOptions options) : base(options)

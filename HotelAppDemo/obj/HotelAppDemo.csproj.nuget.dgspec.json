@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ammar\\source\\repos\\HotelAppDemo\\HotelAppDemo\\HotelAppDemo.csproj": {}
+    "C:\\Users\\ammar\\Source\\Repos\\Async-InnApp\\HotelAppDemo\\HotelAppDemo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ammar\\source\\repos\\HotelAppDemo\\HotelAppDemo\\HotelAppDemo.csproj": {
+    "C:\\Users\\ammar\\Source\\Repos\\Async-InnApp\\HotelAppDemo\\HotelAppDemo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ammar\\source\\repos\\HotelAppDemo\\HotelAppDemo\\HotelAppDemo.csproj",
+        "projectUniqueName": "C:\\Users\\ammar\\Source\\Repos\\Async-InnApp\\HotelAppDemo\\HotelAppDemo.csproj",
         "projectName": "HotelAppDemo",
-        "projectPath": "C:\\Users\\ammar\\source\\repos\\HotelAppDemo\\HotelAppDemo\\HotelAppDemo.csproj",
+        "projectPath": "C:\\Users\\ammar\\Source\\Repos\\Async-InnApp\\HotelAppDemo\\HotelAppDemo.csproj",
         "packagesPath": "C:\\Users\\ammar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ammar\\source\\repos\\HotelAppDemo\\HotelAppDemo\\obj\\",
+        "outputPath": "C:\\Users\\ammar\\Source\\Repos\\Async-InnApp\\HotelAppDemo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ammar\\AppData\\Roaming\\NuGet\\NuGet.Config",
