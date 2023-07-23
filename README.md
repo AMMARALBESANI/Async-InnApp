@@ -64,7 +64,8 @@ Seed data is data that you populate the database with at the time it is created.
 
 -Hotels seed data
 
-```b modelBuilder.Entity<Hotel>().HasData(
+```b
+modelBuilder.Entity<Hotel>().HasData(
                    new Hotel() {Id=1 , Name= "Async Inn" , City="Paris" , Country ="France" , State =" Paris" , StreetAdress = "Paris-France" , Phone ="00560078"},
                    new Hotel() {Id=2 , Name= "Async Inn" , City="Amman" , Country ="Jordan" , State =" Amman" , StreetAdress = "DownTawn" , Phone ="00962788996677"},
                    new Hotel() {Id=3 , Name= "Async Inn" , City="Qairo" , Country ="Egypt" , State ="Qairo" , StreetAdress = "SalahSalem" , Phone ="0156005098"}
@@ -93,6 +94,7 @@ Seed data is data that you populate the database with at the time it is created.
                 new Amenities() { Id=3, Name="Sawna"}
                 );
  ```
+
 
 
 
@@ -377,3 +379,4 @@ Finlly need to add services for all layers in Program.cs class
             services.AddTransient<IHotel, HotelServices>();
             services.AddTransient<IRoom, RoomServices>();
             services.AddTransient<IAmenitie, AmenitieServices>();
+
