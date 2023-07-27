@@ -18,6 +18,10 @@ namespace HotelAppDemo
             //9-add this ststment 
            
             builder.Services.AddControllers();
+
+            builder.Services.AddControllers().AddNewtonsoftJson(options =>
+       options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+     );
             //4- we add connstring to establish the connection between our app and database 
             string connstring = builder.Configuration.GetConnectionString("DefaultConnection");
             // 5- we tell our code to use HotelDbContext this class as gate between us
@@ -29,6 +33,8 @@ namespace HotelAppDemo
             builder.Services.AddTransient<IHotel, HotelServices>();
             builder.Services.AddTransient<IRoom, RoomServices>();
             builder.Services.AddTransient<IAmenities,AmenitiesServices>();
+            builder.Services.AddTransient<IHotelRoom, HotelRoomServices>();
+
 
             var app = builder.Build();
             //9-a- add this statment 

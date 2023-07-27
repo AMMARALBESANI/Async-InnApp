@@ -3,6 +3,7 @@ using HotelAppDemo.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelAppDemo.Migrations
 {
     [DbContext(typeof(HotelDbContext))]
-    partial class HotelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230727002828_AddRoomAmenityTable")]
+    partial class AddRoomAmenityTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,30 +127,6 @@ namespace HotelAppDemo.Migrations
                         });
                 });
 
-            modelBuilder.Entity("HotelAppDemo.Model.HotelRoom", b =>
-                {
-                    b.Property<int>("HotelId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoomId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PetFrienndly")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Rate")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("RoomNumber")
-                        .HasColumnType("int");
-
-                    b.HasKey("HotelId", "RoomId");
-
-                    b.HasIndex("RoomId");
-
-                    b.ToTable("hotelRooms");
-                });
-
             modelBuilder.Entity("HotelAppDemo.Model.Room", b =>
                 {
                     b.Property<int>("Id")
@@ -190,62 +169,36 @@ namespace HotelAppDemo.Migrations
 
             modelBuilder.Entity("HotelAppDemo.Model.RoomAmenity", b =>
                 {
-                    b.Property<int>("AmenityId")
+                    b.Property<int>("AmenitiesId")
                         .HasColumnType("int");
 
                     b.Property<int>("RoomId")
                         .HasColumnType("int");
 
-                    b.HasKey("AmenityId", "RoomId");
+                    b.HasKey("AmenitiesId", "RoomId");
 
                     b.HasIndex("RoomId");
 
                     b.ToTable("roomAmenities");
                 });
 
-            modelBuilder.Entity("HotelAppDemo.Model.HotelRoom", b =>
-                {
-                    b.HasOne("HotelAppDemo.Model.Hotel", "Hotel")
-                        .WithMany()
-                        .HasForeignKey("HotelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("HotelAppDemo.Model.Room", "Room")
-                        .WithMany("HotelRooms")
-                        .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Hotel");
-
-                    b.Navigation("Room");
-                });
-
             modelBuilder.Entity("HotelAppDemo.Model.RoomAmenity", b =>
                 {
-                    b.HasOne("HotelAppDemo.Model.Amenities", "amenity")
+                    b.HasOne("HotelAppDemo.Model.Amenities", "amenitiee")
                         .WithMany()
-                        .HasForeignKey("AmenityId")
+                        .HasForeignKey("AmenitiesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("HotelAppDemo.Model.Room", "room")
-                        .WithMany("RoomAmenities")
+                        .WithMany()
                         .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("amenity");
+                    b.Navigation("amenitiee");
 
                     b.Navigation("room");
-                });
-
-            modelBuilder.Entity("HotelAppDemo.Model.Room", b =>
-                {
-                    b.Navigation("HotelRooms");
-
-                    b.Navigation("RoomAmenities");
                 });
 #pragma warning restore 612, 618
         }

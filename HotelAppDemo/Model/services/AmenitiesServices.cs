@@ -1,5 +1,4 @@
-﻿using AmemitiesAppDemo.Data;
-using AmemitiesAppDemo.Model.Interfaces;
+﻿
 using HotelAppDemo.Data;
 using HotelAppDemo.Model;
 using HotelAppDemo.Model.Interfaces;

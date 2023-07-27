@@ -37,8 +37,26 @@ namespace HotelAppDemo.Data
                 new Amenities() { Id=2, Name="CoffeMaker"},
                 new Amenities() { Id=3, Name="Sawna"}
                 );
+
             //8-add new folder (controler ) and add contorler for all classes in model from api then action entity fram work and we must install laibrary call codegeneration before
+
+            modelBuilder.Entity<RoomAmenity>().HasKey(
+                   roomAmenities => new
+                   {
+                       roomAmenities.AmenityId ,
+
+
+                       roomAmenities.RoomId
+                   }
+                ) ;
+
+            modelBuilder.Entity<HotelRoom>().HasKey(
+               hotelRoom => new { hotelRoom.HotelId, hotelRoom.RoomId }
+               );
+
+
         }
+
      
         
         //6- we create clases and add the attriput intit then we add it here like this
@@ -47,6 +65,9 @@ namespace HotelAppDemo.Data
         public DbSet<Room> room { get; set; }
 
         public DbSet<Amenities> amenities { get; set; } 
+
+        public DbSet <RoomAmenity> roomAmenities { get; set; }
+        public DbSet <HotelRoom> hotelRooms { get; set; }
 
 
 
