@@ -478,4 +478,72 @@ Modify the routes for all CURD operations in this controller for the following:
 - DELETE a specific room from a hotel: /api/HotelRooms/{hotelId}/Rooms/{roomNumber}
 
 
+## Create Data Transfer Objects (DTOs)
+
+Right now, our web API exposes the database entities to the client. The client receives data that maps directly to your database tables. However, that's not always a good idea. Sometimes you want to change the shape of the data that you send to client.
+
+To accomplish this, you can define a data transfer object (DTO). A DTO is an object that defines how the data will be sent over the network. In the Models folder create DTO folder , add This DTO classes:
+
+- HotelDTO
+- HotelRoomDTO
+- RoomDTO
+- AmenityDTO
+
+**HotelDTO**
+```C#
+public class HotelDTO
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string StreetAddress { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Phone { get; set; }
+        public List<HotelRoomDTO> Rooms { get; set; }
+    }
+```
+
+
+
+
+**HotelRoomDTO**
+
+```C#
+ public class HotelRoomDTO
+    {
+        public int HotelID { get; set; }
+        public int RoomNumber { get; set; }
+        public decimal Rate { get; set; }
+        public bool PetFriendly { get; set; }
+        public int RoomID { get; set; }
+        public RoomDTO Room { get; set; }
+    }
+```
+
+
+**RoomDTO**
+
+```C#
+  public class RoomDTO
+    {
+            public int ID { get; set; }
+            public string Name { get; set; }
+            public int Layout { get; set; }
+            public List<AmenitiesDTO> Amenities { get; set; }
+    }
+```
+
+
+**AmenityDTO**
+
+```C#
+public class AmenityDTO
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+    }
+```
+
+
+
 

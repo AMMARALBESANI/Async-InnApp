@@ -1,14 +1,16 @@
-﻿namespace HotelAppDemo.Model.Interfaces
+﻿using HotelAppDemo.Model.DTO;
+
+namespace HotelAppDemo.Model.Interfaces
 {
     public interface IAmenities
     {
-        Task<Amenities> Create(Amenities amenities);
+        Task<AmenitiesDTO> Create(Amenities amenities);
 
-        Task<List<Amenities>> GetAmenities();
+        Task<List<AmenitiesDTO>> GetAmenities();
 
-        Task<Amenities> GetAmenity(int id);
+        Task<AmenitiesDTO> GetAmenity(int id);
 
-        Task<Amenities> UpdateAmenities(int id, Amenities amenities);
+        Task<AmenitiesDTO> UpdateAmenities(int id, Amenities amenities);
 
         Task DeleteAmenities(int id);
     }

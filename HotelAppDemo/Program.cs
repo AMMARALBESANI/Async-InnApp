@@ -31,8 +31,11 @@ namespace HotelAppDemo
                 (options => options.UseSqlServer(connstring));
 
             builder.Services.AddTransient<IHotel, HotelServices>();
+
             builder.Services.AddTransient<IRoom, RoomServices>();
+
             builder.Services.AddTransient<IAmenities,AmenitiesServices>();
+
             builder.Services.AddTransient<IHotelRoom, HotelRoomServices>();
 
 
@@ -42,7 +45,7 @@ namespace HotelAppDemo
             
             app.MapControllers();
 
-            app.UseMvc();
+            
             app.MapGet("/", () => "Hello World!");
 
             app.Run();

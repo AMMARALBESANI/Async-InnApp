@@ -7,9 +7,9 @@
         public int RoomNumber { get; set; }
         public int RoomId { get; set; }
         public decimal Rate { get; set; }
-        public int PetFrienndly { get; set; }
+        public bool PetFrienndly { get; set; }
 
-      
+        
         public Hotel Hotel { get; set; }
         public Room Room { get; set; }
     }

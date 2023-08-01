@@ -40,7 +40,7 @@ namespace HotelAppDemo.Data
 
             //8-add new folder (controler ) and add contorler for all classes in model from api then action entity fram work and we must install laibrary call codegeneration before
 
-            modelBuilder.Entity<RoomAmenity>().HasKey(
+                   modelBuilder.Entity<RoomAmenity>().HasKey(
                    roomAmenities => new
                    {
                        roomAmenities.AmenityId ,
@@ -50,8 +50,14 @@ namespace HotelAppDemo.Data
                    }
                 ) ;
 
-            modelBuilder.Entity<HotelRoom>().HasKey(
-               hotelRoom => new { hotelRoom.HotelId, hotelRoom.RoomId }
+
+                 modelBuilder.Entity<HotelRoom>().HasKey(
+                  hotelRoom => new { 
+
+                   hotelRoom.HotelId,
+
+                   hotelRoom.RoomId 
+               }
                );
 
 

@@ -2,9 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\HotelAppDemo",
+    "\\HotelAppDemo\\Controller",
     "\\HotelAppDemo\\Data",
-    "\\HotelAppDemo\\Model"
+    "\\HotelAppDemo\\Model",
+    "\\HotelAppDemo\\Model\\Interfaces",
+    "\\HotelAppDemo\\Model\\services"
   ],
-  "SelectedNode": "\\HotelAppDemo\\Model",
+  "SelectedNode": "\\HotelAppDemo\\appsettings.json",
   "PreviewInSolutionExplorer": false
 }

@@ -1,18 +1,20 @@
-﻿namespace HotelAppDemo.Model.Interfaces
+﻿using HotelAppDemo.Model.DTO;
+
+namespace HotelAppDemo.Model.Interfaces
 {
     public interface IHotel
     {
         //create
-        Task<Hotel> Create(Hotel hotel);
+        Task<HotelDTO> Create(Hotel hotel);
 
         //get all
-        Task<List<Hotel>> GetHotels();
+        Task<List<HotelDTO>> GetHotels();
 
         // get hotel by id
-        Task<Hotel> GetHotel(int id);
+        Task<HotelDTO> GetHotel(int id);
 
         // update
-        Task<Hotel> UpdateHotel(int id, Hotel hotel);
+        Task<HotelDTO> UpdateHotel(int id, Hotel hotel);
 
         //delete
         Task DeleteHotel(int id);

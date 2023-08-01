@@ -10,7 +10,7 @@ namespace HotelAppDemo.Model
 
         public int layout { get; set; }
 
-        [NotMapped]
+        
         public List<RoomAmenity> RoomAmenities { get; set; }
         public List<HotelRoom> HotelRooms { get; set; }
     }
