@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using HotelAppDemo.Data;
 using HotelAppDemo.Model;
 using HotelAppDemo.Model.Interfaces;
+using HotelAppDemo.Model.DTO;
 
 namespace HotelAppDemo.Controller
 {
@@ -24,20 +25,23 @@ namespace HotelAppDemo.Controller
 
         // GET: api/Hotels
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Hotel>>> Gethotel()
+        public async Task<ActionResult<IEnumerable<HotelDTO>>> Gethotel()
         {
 
-            return await _hotel.GetHotels();
+            var hotels = await _hotel.GetHotels();
+
+            return Ok(hotels);
         }
 
         // GET: api/Hotels/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Hotel>> GetHotel(int id)
+        public async Task<ActionResult<HotelDTO>> GetHotel(int id)
         {
-          var hotel = await _hotel.GetHotel(id);
-            return hotel;
+            HotelDTO hotel = await _hotel.GetHotel(id);
 
-            
+            return Ok(hotel);
+
+
         }
 
         // PUT: api/Hotels/5
@@ -49,19 +53,20 @@ namespace HotelAppDemo.Controller
             {
                 return BadRequest();
             }
-             var updatedhotel = await _hotel.UpdateHotel(id,hotel);
-             return Ok(updatedhotel);
+            HotelDTO modifiedHotel = await _hotel.UpdateHotel(id, hotel);
 
-                  }
+            return Ok(modifiedHotel);
+
+        }
 
         // POST: api/Hotels
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Hotel>> PostHotel(Hotel hotel)
+        public async Task<ActionResult<HotelDTO>> PostHotel(Hotel hotel)
         {
-            await _hotel.Create(hotel);
+            HotelDTO newHotel = await _hotel.Create(hotel);
 
-            return CreatedAtAction("GetHotel", new { id = hotel.Id }, hotel);
+            return Ok(newHotel);
         }
 
         // DELETE: api/Hotels/5

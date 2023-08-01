@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using HotelAppDemo.Data;
 using HotelAppDemo.Model;
 using HotelAppDemo.Model.Interfaces;
+using HotelAppDemo.Model.DTO;
 
 namespace HotelAppDemo.Controller
 {
@@ -24,16 +25,16 @@ namespace HotelAppDemo.Controller
 
         // GET: api/Rooms
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Room>>> Getroom()
+        public async Task<ActionResult<IEnumerable<RoomDTO>>> Getroom()
         {
             return await _room.GetRooms();
         }
 
         // GET: api/Rooms/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Room>> GetRoom(int id)
+        public async Task<ActionResult<RoomDTO>> GetRoom(int id)
         {
-            var room = await _room.GetRoom(id);
+            RoomDTO room = await _room.GetRoom(id);
             return room;
         }
 
@@ -54,7 +55,7 @@ namespace HotelAppDemo.Controller
         // POST: api/Rooms
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Room>> PostRoom(Room room)
+        public async Task<ActionResult<RoomDTO>> PostRoom(Room room)
         {
             await _room.Create(room);
 

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using HotelAppDemo.Data;
 using HotelAppDemo.Model;
 using HotelAppDemo.Model.Interfaces;
+using HotelAppDemo.Model.DTO;
 
 namespace HotelAppDemo.Controller
 {
@@ -24,14 +25,16 @@ namespace HotelAppDemo.Controller
 
         // GET: api/Amenities
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Amenities>>> Getamenities()
+        public async Task<ActionResult<IEnumerable<AmenitiesDTO>>> Getamenities()
         {
-            return await _amenties.GetAmenities();
+            var amenities = await _amenties.GetAmenities();
+
+            return Ok(amenities);
         }
 
         // GET: api/Amenities/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Amenities>> GetAmenities(int id)
+        public async Task<ActionResult<AmenitiesDTO>> GetAmenities(int id)
         {
             var amenties = await _amenties.GetAmenity(id);
             return amenties;
@@ -47,18 +50,19 @@ namespace HotelAppDemo.Controller
                 return BadRequest();
             }
 
-            var updatedamenties = await _amenties.UpdateAmenities(id , amenities);
-            return Ok(updatedamenties);
+            AmenitiesDTO modifiedAmenity = await _amenties.UpdateAmenities(id,amenities);
+
+            return Ok(modifiedAmenity);
         }
 
         // POST: api/Amenities
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Amenities>> PostAmenities(Amenities amenities)
+        public async Task<ActionResult<AmenitiesDTO>> PostAmenities(Amenities amenities)
         {
-            await _amenties.Create(amenities);
+            AmenitiesDTO newAmenity = await _amenties.Create(amenities);
 
-            return CreatedAtAction("GetAmenities", new { id = amenities.Id }, amenities);
+            return Ok(newAmenity);
         }
 
         // DELETE: api/Amenities/5
