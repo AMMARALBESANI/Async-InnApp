@@ -64,7 +64,8 @@ Seed data is data that you populate the database with at the time it is created.
 
 -Hotels seed data
 
-```b modelBuilder.Entity<Hotel>().HasData(
+```b
+modelBuilder.Entity<Hotel>().HasData(
                    new Hotel() {Id=1 , Name= "Async Inn" , City="Paris" , Country ="France" , State =" Paris" , StreetAdress = "Paris-France" , Phone ="00560078"},
                    new Hotel() {Id=2 , Name= "Async Inn" , City="Amman" , Country ="Jordan" , State =" Amman" , StreetAdress = "DownTawn" , Phone ="00962788996677"},
                    new Hotel() {Id=3 , Name= "Async Inn" , City="Qairo" , Country ="Egypt" , State ="Qairo" , StreetAdress = "SalahSalem" , Phone ="0156005098"}
@@ -93,6 +94,7 @@ Seed data is data that you populate the database with at the time it is created.
                 new Amenities() { Id=3, Name="Sawna"}
                 );
  ```
+
 
 
 
@@ -380,6 +382,7 @@ Finlly need to add services for all layers in Program.cs class
 
 
 
+
 ## Navigation Properties 
 
 Add Navigation Properties to relation table (RoomAmenity , HotelRoom)
@@ -474,6 +477,7 @@ Modify the routes for all CURD operations in this controller for the following:
 
 - DELETE a specific room from a hotel: /api/HotelRooms/{hotelId}/Rooms/{roomNumber}
 
+
 ## Create Data Transfer Objects (DTOs)
 
 Right now, our web API exposes the database entities to the client. The client receives data that maps directly to your database tables. However, that's not always a good idea. Sometimes you want to change the shape of the data that you send to client.
@@ -539,6 +543,7 @@ public class AmenityDTO
         public string Name { get; set; }
     }
 ```
+
 
 
 
