@@ -14,17 +14,17 @@ namespace HotelAppDemo.Model.services
             _context = context;
         }
 
-        public async Task<HotelRoomDTO> AddRoomToHotel(int hotelId, HotelRoom hotelRoom)
+        public async Task<HotelRoomDTO> AddRoomToHotel(int hotelId, HotelRoomDTO hotelRoom)
         {
-           _context.Entry(hotelRoom).State = EntityState.Added;
-           await _context.SaveChangesAsync();
+            _context.Entry(hotelRoom).State = EntityState.Added;
+            await _context.SaveChangesAsync();
             HotelRoomDTO room = new HotelRoomDTO
             {
                 HotelID = hotelId,
                 RoomNumber = hotelRoom.RoomNumber,
-                RoomID = hotelRoom.RoomId,
+                RoomID = hotelRoom.RoomID,
                 Rate = hotelRoom.Rate,
-                PetFriendly = hotelRoom.PetFrienndly,
+                PetFriendly = hotelRoom.PetFriendly,
             };
 
 
@@ -49,9 +49,9 @@ namespace HotelAppDemo.Model.services
                         Amenities = hr.Room.RoomAmenities
                             .Select(a => new AmenitiesDTO
                             {
-                                ID=a.Amenity.Id,
-                                Name=a.Amenity.Name,
-                               
+                                ID = a.Amenity.Id,
+                                Name = a.Amenity.Name,
+
                             }).ToList()
                     }
                 }).ToListAsync();
@@ -70,15 +70,15 @@ namespace HotelAppDemo.Model.services
             return hotelRoom;
         }
 
-        public async Task<HotelRoom> UpdateRoomDetails(int hotelId, int roomNumber, HotelRoom hr)
+        public async Task<HotelRoomDTO> UpdateRoomDetails(int hotelId, int roomNumber, HotelRoomDTO hr)
         {
             HotelRoom roomDetails = new HotelRoom
             {
                 HotelId = hotelId,
                 RoomNumber = roomNumber,
-                RoomId = hr.RoomId,
+                RoomId = hr.RoomID,
                 Rate = hr.Rate,
-                PetFrienndly = hr.PetFrienndly
+                PetFrienndly = hr.PetFriendly
             };
 
             _context.Entry(roomDetails).State = EntityState.Modified;

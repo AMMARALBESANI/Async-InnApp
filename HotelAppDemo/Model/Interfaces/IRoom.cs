@@ -2,6 +2,9 @@
 
 namespace HotelAppDemo.Model.Interfaces
 {
+    /// <summary>
+    /// This interface represents the basic method for the room model
+    /// </summary>
     public interface IRoom
     {
         Task<RoomDTO> Create (Room room);

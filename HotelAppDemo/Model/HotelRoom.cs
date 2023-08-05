@@ -10,7 +10,7 @@
         public bool PetFrienndly { get; set; }
 
         
-        public Hotel Hotel { get; set; }
-        public Room Room { get; set; }
+        public Hotel? Hotel { get; set; }
+        public Room? Room { get; set; }
     }
 }

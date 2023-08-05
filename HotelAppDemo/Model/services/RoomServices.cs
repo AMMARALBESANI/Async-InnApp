@@ -7,7 +7,6 @@ namespace HotelAppDemo.Model.services
 {
     public class RoomServices : IRoom
     {
-
         private readonly HotelDbContext _context;
 
         public RoomServices(HotelDbContext context)
@@ -15,11 +14,14 @@ namespace HotelAppDemo.Model.services
             _context = context;
         }
 
+        /// <summary>
+        /// Creates a new Room record in the database.
+        /// </summary>
+        /// <param name="room">The Room object to be created.</param>
+        /// <returns>A RoomDTO object representing the created Room.</returns>
         public async Task<RoomDTO> Create(Room room)
         {
-
             _context.Entry(room).State = EntityState.Added;
-
             await _context.SaveChangesAsync();
 
             RoomDTO roomDTO = new RoomDTO
@@ -32,11 +34,13 @@ namespace HotelAppDemo.Model.services
             return roomDTO;
         }
 
+        /// <summary>
+        /// Retrieves a specific Room from the database based on the provided id.
+        /// </summary>
+        /// <param name="id">The id of the Room to retrieve.</param>
+        /// <returns>A RoomDTO object representing the retrieved Room, or null if not found.</returns>
         public async Task<RoomDTO> GetRoom(int id)
         {
-            //Room room = await _context.Rooms.FindAsync(id);
-            //return room;
-
             return await _context.room.Select(r => new RoomDTO
             {
                 ID = r.Id,
@@ -50,15 +54,12 @@ namespace HotelAppDemo.Model.services
             }).FirstOrDefaultAsync(x => x.ID == id);
         }
 
+        /// <summary>
+        /// Retrieves a list of all Rooms from the database.
+        /// </summary>
+        /// <returns>A list of RoomDTO objects representing the retrieved Rooms.</returns>
         public async Task<List<RoomDTO>> GetRooms()
         {
-            //var rooms = await _context.Rooms.ToListAsync();
-            //return rooms;
-
-            //return await _context.Rooms.Include(ra => ra.RoomAmenities)
-            //                           .ThenInclude(a => a.Amenity)
-            //                           .ToListAsync();
-
             return await _context.room.Select(r => new RoomDTO
             {
                 ID = r.Id,
@@ -72,6 +73,12 @@ namespace HotelAppDemo.Model.services
             }).ToListAsync();
         }
 
+        /// <summary>
+        /// Updates an existing Room record in the database based on the provided id and Room object.
+        /// </summary>
+        /// <param name="id">The id of the Room to update.</param>
+        /// <param name="room">The updated Room object.</param>
+        /// <returns>A RoomDTO object representing the updated Room.</returns>
         public async Task<RoomDTO> UpdateRoom(int id, Room room)
         {
             RoomDTO roomDTO = new RoomDTO
@@ -82,21 +89,28 @@ namespace HotelAppDemo.Model.services
             };
 
             _context.Entry(room).State = EntityState.Modified;
-
             await _context.SaveChangesAsync();
 
             return roomDTO;
         }
 
+        /// <summary>
+        /// Deletes an existing Room record from the database based on the provided id.
+        /// </summary>
+        /// <param name="id">The id of the Room to delete.</param>
         public async Task DeleteRoom(int id)
         {
             Room room = await _context.room.FindAsync(id);
 
             _context.Entry(room).State = EntityState.Deleted;
-
             await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Adds an Amenity to a Room in the database.
+        /// </summary>
+        /// <param name="roomId">The id of the Room to which the Amenity will be added.</param>
+        /// <param name="amenityId">The id of the Amenity to add.</param>
         public async Task AddAmenityToRoom(int roomId, int amenityId)
         {
             RoomAmenity roomAmenity = new RoomAmenity
@@ -106,18 +120,21 @@ namespace HotelAppDemo.Model.services
             };
 
             _context.Entry(roomAmenity).State = EntityState.Added;
-
             await _context.SaveChangesAsync();
-
         }
 
+        /// <summary>
+        /// Removes an Amenity from a Room in the database.
+        /// </summary>
+        /// <param name="roomId">The id of the Room from which the Amenity will be removed.</param>
+        /// <param name="amenityId">The id of the Amenity to remove.</param>
         public async Task RemoveAmentityFromRoom(int roomId, int amenityId)
         {
             RoomAmenity roomAmenity = await _context.roomAmenities
                                             .Where(Rm => Rm.RoomId == roomId && Rm.AmenityId == amenityId)
                                             .FirstAsync();
             _context.Entry(roomAmenity).State = EntityState.Deleted;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

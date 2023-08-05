@@ -5,9 +5,10 @@
     "\\HotelAppDemo\\Controller",
     "\\HotelAppDemo\\Data",
     "\\HotelAppDemo\\Model",
+    "\\HotelAppDemo\\Model\\DTO",
     "\\HotelAppDemo\\Model\\Interfaces",
     "\\HotelAppDemo\\Model\\services"
   ],
-  "SelectedNode": "\\HotelAppDemo\\appsettings.json",
+  "SelectedNode": "\\HotelAppDemo.sln",
   "PreviewInSolutionExplorer": false
 }
