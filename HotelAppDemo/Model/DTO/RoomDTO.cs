@@ -6,7 +6,7 @@
             public int ID { get; set; }
             public string Name { get; set; }
             public int Layout { get; set; }
-            public List<AmenitiesDTO> Amenities { get; set; }
+            public List<AmenitiesDTO>? Amenities { get; set; }
         
     }
 }

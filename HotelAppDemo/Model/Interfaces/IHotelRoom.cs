@@ -2,16 +2,19 @@
 
 namespace HotelAppDemo.Model.Interfaces
 {
+    /// <summary>
+    /// This interface represents the basic method for the HotelRoom model
+    /// </summary>
     public interface IHotelRoom
     {
 
         Task<List<HotelRoomDTO>> GetHotelRooms(int hotelId);
 
-        Task<HotelRoomDTO> AddRoomToHotel(int hotelId, HotelRoom hr);
+        Task<HotelRoomDTO> AddRoomToHotel(int hotelId, HotelRoomDTO hr);
 
-        Task<HotelRoomDTO> RoomDetails(int hotelId, int roomNumber);
+        Task<HotelRoom> RoomDetails(int hotelId, int roomNumber);
 
-        Task<HotelRoomDTO> UpdateRoomDetails(int hotelId, int roomNumber, HotelRoom hr);
+        Task<HotelRoomDTO> UpdateRoomDetails(int hotelId, int roomNumber,HotelRoomDTO hotelRoomdto);
 
         Task DeleteRoomFromHotel(int hotelId, int roomNumber);
     }

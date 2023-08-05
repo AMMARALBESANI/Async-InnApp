@@ -2,6 +2,9 @@
 
 namespace HotelAppDemo.Model.Interfaces
 {
+    /// <summary>
+    /// This interface represents the basic method for the Hotel model
+    /// </summary>
     public interface IHotel
     {
         //create

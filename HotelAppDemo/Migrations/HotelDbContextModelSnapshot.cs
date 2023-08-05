@@ -132,8 +132,8 @@ namespace HotelAppDemo.Migrations
                     b.Property<int>("RoomId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PetFrienndly")
-                        .HasColumnType("int");
+                    b.Property<bool>("PetFrienndly")
+                        .HasColumnType("bit");
 
                     b.Property<decimal>("Rate")
                         .HasColumnType("decimal(18,2)");
@@ -206,7 +206,7 @@ namespace HotelAppDemo.Migrations
             modelBuilder.Entity("HotelAppDemo.Model.HotelRoom", b =>
                 {
                     b.HasOne("HotelAppDemo.Model.Hotel", "Hotel")
-                        .WithMany()
+                        .WithMany("HotelRooms")
                         .HasForeignKey("HotelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -224,21 +224,31 @@ namespace HotelAppDemo.Migrations
 
             modelBuilder.Entity("HotelAppDemo.Model.RoomAmenity", b =>
                 {
-                    b.HasOne("HotelAppDemo.Model.Amenities", "amenity")
-                        .WithMany()
+                    b.HasOne("HotelAppDemo.Model.Amenities", "Amenity")
+                        .WithMany("RoomAmenities")
                         .HasForeignKey("AmenityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HotelAppDemo.Model.Room", "room")
+                    b.HasOne("HotelAppDemo.Model.Room", "Room")
                         .WithMany("RoomAmenities")
                         .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("amenity");
+                    b.Navigation("Amenity");
 
-                    b.Navigation("room");
+                    b.Navigation("Room");
+                });
+
+            modelBuilder.Entity("HotelAppDemo.Model.Amenities", b =>
+                {
+                    b.Navigation("RoomAmenities");
+                });
+
+            modelBuilder.Entity("HotelAppDemo.Model.Hotel", b =>
+                {
+                    b.Navigation("HotelRooms");
                 });
 
             modelBuilder.Entity("HotelAppDemo.Model.Room", b =>

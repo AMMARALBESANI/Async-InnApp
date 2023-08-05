@@ -20,8 +20,9 @@ namespace HotelAppDemo
             builder.Services.AddControllers();
 
             builder.Services.AddControllers().AddNewtonsoftJson(options =>
-       options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-     );
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+
             //4- we add connstring to establish the connection between our app and database 
             string connstring = builder.Configuration.GetConnectionString("DefaultConnection");
             // 5- we tell our code to use HotelDbContext this class as gate between us
@@ -38,10 +39,28 @@ namespace HotelAppDemo
 
             builder.Services.AddTransient<IHotelRoom, HotelRoomServices>();
 
+            builder.Services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.
+                    OpenApiInfo()
+                {
+                    Title = "HotelAppDemo",
+                    Version="v1"
+        
+                });
+            });
 
             var app = builder.Build();
             //9-a- add this statment 
-
+            app.UseSwagger(options =>
+            {
+                options.RouteTemplate = "/api/{documentName}/swagger.json";
+            });
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/api/v1/swagger.json","Hotel ApI");
+                options.RoutePrefix = "docs";
+            });
             
             app.MapControllers();
 

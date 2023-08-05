@@ -2,6 +2,9 @@
 
 namespace HotelAppDemo.Model.Interfaces
 {
+    /// <summary>
+    /// This interface represents the basic method for the Amenities model
+    /// </summary>
     public interface IAmenities
     {
         Task<AmenitiesDTO> Create(Amenities amenities);

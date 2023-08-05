@@ -545,5 +545,88 @@ public class AmenityDTO
 ```
 
 
+## Unit Testing
+
+Testing CRUD operations through services , Using Unit testing in ASP.NET Core with EF Sqlite in-memory and XUnit .
+
+- Tests can use this mock instead of SQL Server and can create/delete records
+
+- Test to Add Amenity To Room , And Remove Amentity From Room
+
+```C#
+[Fact]
+
+ public async Task Can_enroll_and_drop_a_Room()
+        {
+            // Arrange
+            var room = await CreateAndSaveTestRoom();
+            var amenity = await CreateAndSaveTestAmenity();
+
+            var roomAmenity = new RoomServices(_db);
+
+            // Act
+            await roomAmenity.AddAmenityToRoom(room.Id, amenity.Id);
+
+            // Assert
+            var actualRoom = await roomAmenity.GetRoom(room.Id);
+
+            Assert.Contains(actualRoom.Amenities, a => a.ID == amenity.Id);
+
+            // Act
+            await roomAmenity.RemoveAmentityFromRoom(room.Id, amenity.Id);
+
+            // Assert
+            actualRoom = await roomAmenity.GetRoom(room.Id);
+
+            Assert.DoesNotContain(actualRoom.Amenities, a => a.ID == amenity.Id);
+        }
+        
+```
+
+
+
+
+## Swagger
+
+Swagger tooling for APIs built with ASP.NET Core. Generate beautiful API documentation, including a UI to explore and test operations, directly from your routes, controllers and models.
+
+Les't create live documentation using Swagger definitions :
+
+- In Startup file add configure a new service dependency
+
+```C#
+services.AddSwaggerGen(options =>
+   {
+     // Make sure get the "using Statement"
+     options.SwaggerDoc("v1", new OpenApiInfo()
+     {
+       Title = "Hotel API",
+       Version = "v1",
+     });
+   });
+```
+
+- Add configured Swagger compatible JSON definition.
+
+```C#
+app.UseSwagger( options => {
+ options.RouteTemplate = "/api/{documentName}/swagger.json";
+});
+```
+
+- Add endpoint for Swagger UI
+
+```C#
+app.UseSwaggerUI( options => {
+  options.SwaggerEndpoint("/api/v1/swagger.json", "Hotel API");
+  options.RoutePrefix = "docs";
+});
+```
+
+- Now this URL to get Swagger UI : http://localhost:PORT/docs
+
+> Note That : Set RoutePrefix to "" to make your API Documentation the Home Page for your API
+
+
 
 

@@ -14,61 +14,53 @@ namespace HotelAppDemo.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-
     public class HotelRoomsController : ControllerBase
     {
-        private readonly IHotelRoom _HotelRoom;
+        private readonly IHotelRoom _hotelRoom;
 
         public HotelRoomsController(IHotelRoom hotelRoom)
         {
-            _HotelRoom = hotelRoom;
+            _hotelRoom = hotelRoom;
         }
 
         // GET: api/HotelRooms/1/Rooms
-        [HttpGet]
-        [Route("api/{hotelId}/Rooms")]
-        public async Task<ActionResult<HotelDTO>> GetHotelRooms(int hotelId)
+        [HttpGet("/api/Hotels/{hotelId}/Rooms")]
+        public async Task<ActionResult<HotelRoomDTO>> GetHotelRooms(int hotelId)
         {
-            var hotelRooms = await _HotelRoom.GetHotelRooms(hotelId);
+            var hotelRooms = await _hotelRoom.GetHotelRooms(hotelId);
             return Ok(hotelRooms);
         }
 
         // POST: api/HotelRooms/1/Rooms
-        [HttpPost]
-        [Route("api/{hotelId}/Rooms")]
-        public async Task<ActionResult<HotelRoomDTO>> PostHotelRoom(int hotelId, HotelRoom hr)
+        [HttpPost("/api/Hotels/{hotelId}/Rooms")]
+        public async Task<ActionResult<HotelRoomDTO>> PostHotelRoom(int hotelId, HotelRoomDTO hr)
         {
-            var hotelRoom = await _HotelRoom.AddRoomToHotel(hotelId, hr);
+            var hotelRoom = await _hotelRoom.AddRoomToHotel(hotelId, hr);
             return Ok(hotelRoom);
         }
+
         // GET: api/HotelRooms/1/Rooms/1
-        [HttpGet]
-        [Route("api/{hotelId}/Rooms/{roomNumber}")]
+        [HttpGet("/api/Hotels/{hotelId}/Rooms/{roomNumber}")]
         public async Task<IActionResult> GetRoomDetails(int hotelId, int roomNumber)
         {
-            var room = await _HotelRoom.RoomDetails(hotelId, roomNumber);
-
+            var room = await _hotelRoom.RoomDetails(hotelId, roomNumber);
             return Ok(room);
         }
 
         // PUT: api/HotelRooms/1/Rooms/1
-        [HttpPut]
-        [Route("api/{hotelId}/Rooms/{roomNumber}")]
-        public async Task<IActionResult> PutHotelRoom(int hotelId, int roomNumber, HotelRoom hr)
+        [HttpPut("/api/Hotels/{hotelId}/Rooms/{roomNumber}")]
+        public async Task<IActionResult> PutHotelRoom(int hotelId, int roomNumber, HotelRoomDTO hr)
         {
-            var newRoom = await _HotelRoom.UpdateRoomDetails(hotelId, roomNumber, hr);
+            var newRoom = await _hotelRoom.UpdateRoomDetails(hotelId, roomNumber, hr);
             return Ok(newRoom);
         }
 
         // DELETE: api/HotelRooms/5/1
-        [HttpDelete]
-        [Route("api/{hotelId}/Rooms/{roomNumber}")]
+        [HttpDelete("/api/Hotels/{hotelId}/Rooms/{roomNumber}")]
         public async Task<IActionResult> DeleteHotelRoom(int hotelId, int roomNumber)
         {
-            await _HotelRoom.DeleteRoomFromHotel(hotelId, roomNumber);
+            await _hotelRoom.DeleteRoomFromHotel(hotelId, roomNumber);
             return NoContent();
         }
-
-
     }
 }
