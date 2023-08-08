@@ -1,11 +1,12 @@
 ﻿using HotelAppDemo.Model;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using System.Collections.Generic;
 
 namespace HotelAppDemo.Data
 {
-    public class HotelDbContext : DbContext
+    public class HotelDbContext : IdentityDbContext<ApplicationUser>
     {
 
         // 2-create a constractor and give it a parameter DbContextOptions will take different configrations for database 
@@ -20,6 +21,8 @@ namespace HotelAppDemo.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Hotel>().HasData(
                    new Hotel() {Id=1 , Name= "Async Inn" , City="Paris" , Country ="France" , State =" Paris" , StreetAdress = "Paris-France" , Phone ="00560078"},
                    new Hotel() {Id=2 , Name= "Async Inn" , City="Amman" , Country ="Jordan" , State =" Amman" , StreetAdress = "DownTawn" , Phone ="00962788996677"},
@@ -40,7 +43,8 @@ namespace HotelAppDemo.Data
 
             //8-add new folder (controler ) and add contorler for all classes in model from api then action entity fram work and we must install laibrary call codegeneration before
 
-                   modelBuilder.Entity<RoomAmenity>().HasKey(
+             // to tell the database that this class has a praimary key contant from these two keys  
+              modelBuilder.Entity<RoomAmenity>().HasKey(
                    roomAmenities => new
                    {
                        roomAmenities.AmenityId ,

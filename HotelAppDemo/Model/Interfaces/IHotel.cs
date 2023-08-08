@@ -8,7 +8,7 @@ namespace HotelAppDemo.Model.Interfaces
     public interface IHotel
     {
         //create
-        Task<HotelDTO> Create(Hotel hotel);
+        Task<Hotel> Create(HotelDTO hotel);
 
         //get all
         Task<List<HotelDTO>> GetHotels();
@@ -17,7 +17,7 @@ namespace HotelAppDemo.Model.Interfaces
         Task<HotelDTO> GetHotel(int id);
 
         // update
-        Task<HotelDTO> UpdateHotel(int id, Hotel hotel);
+        Task<HotelDTO> UpdateHotel(int id, HotelDTO hotel);
 
         //delete
         Task DeleteHotel(int id);

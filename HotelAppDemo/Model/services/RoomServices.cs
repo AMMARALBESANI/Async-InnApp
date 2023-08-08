@@ -19,19 +19,20 @@ namespace HotelAppDemo.Model.services
         /// </summary>
         /// <param name="room">The Room object to be created.</param>
         /// <returns>A RoomDTO object representing the created Room.</returns>
-        public async Task<RoomDTO> Create(Room room)
+        public async Task<Room> Create(RoomDTO roomdto)
         {
+            
+
+            var room = new Room
+            {
+                Id = roomdto.ID,
+                Name = roomdto.Name,
+                layout = roomdto.Layout
+            };
             _context.Entry(room).State = EntityState.Added;
             await _context.SaveChangesAsync();
 
-            RoomDTO roomDTO = new RoomDTO
-            {
-                ID = room.Id,
-                Name = room.Name,
-                Layout = room.layout
-            };
-
-            return roomDTO;
+            return room;
         }
 
         /// <summary>
@@ -79,19 +80,19 @@ namespace HotelAppDemo.Model.services
         /// <param name="id">The id of the Room to update.</param>
         /// <param name="room">The updated Room object.</param>
         /// <returns>A RoomDTO object representing the updated Room.</returns>
-        public async Task<RoomDTO> UpdateRoom(int id, Room room)
+        public async Task<RoomDTO> UpdateRoom(int id, RoomDTO roomdto)
         {
-            RoomDTO roomDTO = new RoomDTO
+            Room room = new Room
             {
-                ID = room.Id,
-                Name = room.Name,
-                Layout = room.layout
+               Id = roomdto.ID,
+                Name = roomdto.Name,
+                layout = roomdto.Layout
             };
 
             _context.Entry(room).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
-            return roomDTO;
+            return roomdto;
         }
 
         /// <summary>

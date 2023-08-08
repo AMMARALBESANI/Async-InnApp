@@ -7,8 +7,9 @@
     "\\HotelAppDemo\\Model",
     "\\HotelAppDemo\\Model\\DTO",
     "\\HotelAppDemo\\Model\\Interfaces",
-    "\\HotelAppDemo\\Model\\services"
+    "\\HotelAppDemo\\Model\\services",
+    "\\TestAsync-Inn Hotel"
   ],
-  "SelectedNode": "\\HotelAppDemo.sln",
+  "SelectedNode": "\\HotelAppDemo\\Controller\\UserController.cs",
   "PreviewInSolutionExplorer": false
 }

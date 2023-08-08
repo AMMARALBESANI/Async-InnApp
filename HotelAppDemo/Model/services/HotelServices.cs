@@ -19,22 +19,22 @@ namespace HotelAppDemo.Model.services
         /// </summary>
         /// <param name="hotel">The Hotel object to be created.</param>
         /// <returns>A HotelDTO object representing the created hotel.</returns>
-        public async Task<HotelDTO> Create(Hotel hotel)
+        public async Task<Hotel> Create(HotelDTO hoteldto)
         {
+            
+
+            Hotel hotel = new Hotel
+            {
+                Id = hoteldto.ID,
+                Name = hoteldto.Name,
+                StreetAdress = hoteldto.StreetAddress,
+                City = hoteldto.City,
+                State = hoteldto.State,
+                Phone = hoteldto.Phone,
+            };
             _context.Entry(hotel).State = EntityState.Added;
             await _context.SaveChangesAsync();
-
-            HotelDTO hotelDTO = new HotelDTO
-            {
-                ID = hotel.Id,
-                Name = hotel.Name,
-                StreetAddress = hotel.StreetAdress,
-                City = hotel.City,
-                State = hotel.State,
-                Phone = hotel.Phone,
-            };
-
-            return hotelDTO;
+            return hotel;
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace HotelAppDemo.Model.services
         public async Task<HotelDTO> GetHotel(int id)
         {
             return await _context.hotel.Select(
-                hotel => new HotelDTO
+                hotel => new HotelDTO()
                 {
                     ID = hotel.Id,
                     Name = hotel.Name,
@@ -66,7 +66,7 @@ namespace HotelAppDemo.Model.services
                             Name = hotelR.Room.Name,
                             Layout = hotelR.Room.layout,
                             Amenities = hotelR.Room.RoomAmenities
-                            .Select(A => new AmenitiesDTO
+                            .Select(A => new AmenitiesDTO()
                             {
                                 ID = A.Amenity.Id,
                                 Name = A.Amenity.Name
@@ -120,22 +120,22 @@ namespace HotelAppDemo.Model.services
         /// <param name="id">The id of the hotel to update.</param>
         /// <param name="hotel">The updated Hotel object.</param>
         /// <returns>A HotelDTO object representing the updated hotel.</returns>
-        public async Task<HotelDTO> UpdateHotel(int id, Hotel hotel)
+        public async Task<HotelDTO> UpdateHotel(int id, HotelDTO hoteldto)
         {
-            HotelDTO hotelDTO = new HotelDTO
+            Hotel hotel= new Hotel
             {
-                ID = hotel.Id,
-                Name = hotel.Name,
-                StreetAddress = hotel.StreetAdress,
-                City = hotel.City,
-                State = hotel.State,
-                Phone = hotel.Phone,
+                Id = hoteldto.ID,
+                Name = hoteldto.Name,
+                StreetAdress = hoteldto.StreetAddress,
+                City = hoteldto.City,
+                State = hoteldto.State,
+                Phone = hoteldto.Phone,
             };
 
             _context.Entry(hotel).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
-            return hotelDTO;
+            return hoteldto;
         }
 
         /// <summary>

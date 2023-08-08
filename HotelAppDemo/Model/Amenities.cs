@@ -6,6 +6,6 @@
 
         public string Name { get; set; }
 
-        public List<RoomAmenity> RoomAmenities { get; set; }
+        public List<RoomAmenity>? RoomAmenities { get; set; }
     }
 }

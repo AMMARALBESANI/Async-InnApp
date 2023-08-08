@@ -497,3 +497,14 @@ C:\Users\ammar\source\repos\Async-InnApp\HotelAppDemo\obj\Debug\net7.0\ref\Hotel
 C:\Users\ammar\Source\Repos\Async-InnApp\HotelAppDemo\bin\Debug\net7.0\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\ammar\Source\Repos\Async-InnApp\HotelAppDemo\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\ammar\Source\Repos\Async-InnApp\HotelAppDemo\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
+C:\Users\ammar\source\repos\Async-InnApp\HotelAppDemo\bin\Debug\net7.0\Microsoft.OpenApi.dll
+C:\Users\ammar\source\repos\Async-InnApp\HotelAppDemo\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\ammar\source\repos\Async-InnApp\HotelAppDemo\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\ammar\source\repos\Async-InnApp\HotelAppDemo\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\ammar\source\repos\Async-InnApp\HotelAppDemo\obj\Debug\net7.0\HotelAppDemo.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\ammar\Source\Repos\Async-InnApp\HotelAppDemo\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\ammar\Source\Repos\Async-InnApp\HotelAppDemo\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\ammar\Source\Repos\Async-InnApp\HotelAppDemo\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\ammar\Source\Repos\Async-InnApp\HotelAppDemo\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\ammar\Source\Repos\Async-InnApp\HotelAppDemo\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\ammar\Source\Repos\Async-InnApp\HotelAppDemo\bin\Debug\net7.0\Microsoft.Extensions.Options.dll

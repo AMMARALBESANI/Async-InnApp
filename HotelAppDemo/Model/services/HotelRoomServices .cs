@@ -16,19 +16,19 @@ namespace HotelAppDemo.Model.services
 
         public async Task<HotelRoomDTO> AddRoomToHotel(int hotelId, HotelRoomDTO hotelRoom)
         {
-            _context.Entry(hotelRoom).State = EntityState.Added;
-            await _context.SaveChangesAsync();
-            HotelRoomDTO room = new HotelRoomDTO
+            HotelRoom room = new HotelRoom
             {
-                HotelID = hotelId,
+                HotelId = hotelId,
                 RoomNumber = hotelRoom.RoomNumber,
-                RoomID = hotelRoom.RoomID,
+                RoomId = hotelRoom.RoomID,
                 Rate = hotelRoom.Rate,
-                PetFriendly = hotelRoom.PetFriendly,
+                PetFrienndly = hotelRoom.PetFriendly,
             };
 
+            _context.Entry(room).State = EntityState.Added;
+            await _context.SaveChangesAsync();
 
-            return room;
+            return hotelRoom;
         }
 
         public async Task<List<HotelRoomDTO>> GetHotelRooms(int hotelId)
@@ -43,7 +43,7 @@ namespace HotelAppDemo.Model.services
                     RoomNumber = hr.RoomNumber,
                     Room = new RoomDTO
                     {
-                        ID = hr.Room.Id,
+                       ID = hr.Room.Id,
                         Name = hr.Room.Name,
                         Layout = hr.Room.layout,
                         Amenities = hr.Room.RoomAmenities
@@ -56,18 +56,27 @@ namespace HotelAppDemo.Model.services
                     }
                 }).ToListAsync();
         }
-        public async Task<HotelRoom> RoomDetails(int hotelId, int roomNumber)
+        public async Task<HotelRoomDTO> RoomDetails(int hotelId, int roomNumber)
         {
-            HotelRoom roomDetails = await _context.hotelRooms
+            var roomDetails = await _context.hotelRooms
                .Where(hr => hr.HotelId == hotelId && hr.RoomNumber == roomNumber)
                .FirstAsync();
 
-            HotelRoom hotelRoom = await _context.hotelRooms.Include(r => r.Room)
+            var hotelRoom = await _context.hotelRooms.Include(r => r.Room)
                                                            .ThenInclude(am => am.RoomAmenities)
                                                            .ThenInclude(a => a.Amenity)
                                                            .Where(h => h.HotelId == roomDetails.HotelId && h.RoomId == roomDetails.RoomId)
                                                            .FirstAsync();
-            return hotelRoom;
+
+            var hotelroomdto = new HotelRoomDTO
+            {
+                HotelID = hotelId,
+                RoomNumber = roomNumber,
+                RoomID = hotelRoom.RoomId,
+                Rate = hotelRoom.Rate,
+                PetFriendly = hotelRoom.PetFrienndly
+            };
+            return hotelroomdto;
         }
 
         public async Task<HotelRoomDTO> UpdateRoomDetails(int hotelId, int roomNumber, HotelRoomDTO hr)

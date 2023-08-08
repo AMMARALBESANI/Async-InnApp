@@ -12,7 +12,7 @@ namespace HotelAppDemo.Model.Interfaces
 
         Task<HotelRoomDTO> AddRoomToHotel(int hotelId, HotelRoomDTO hr);
 
-        Task<HotelRoom> RoomDetails(int hotelId, int roomNumber);
+        Task<HotelRoomDTO> RoomDetails(int hotelId, int roomNumber);
 
         Task<HotelRoomDTO> UpdateRoomDetails(int hotelId, int roomNumber,HotelRoomDTO hotelRoomdto);
 

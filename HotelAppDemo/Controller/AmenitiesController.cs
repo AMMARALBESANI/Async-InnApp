@@ -43,14 +43,14 @@ namespace HotelAppDemo.Controller
         // PUT: api/Amenities/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAmenities(int id, Amenities amenities)
+        public async Task<IActionResult> PutAmenities(int id, AmenitiesDTO amenities)
         {
-            if (id != amenities.Id)
+            if (id != amenities.ID)
             {
                 return BadRequest();
             }
 
-            AmenitiesDTO modifiedAmenity = await _amenties.UpdateAmenities(id,amenities);
+            var modifiedAmenity = await _amenties.UpdateAmenities(id,amenities);
 
             return Ok(modifiedAmenity);
         }
@@ -58,9 +58,9 @@ namespace HotelAppDemo.Controller
         // POST: api/Amenities
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<AmenitiesDTO>> PostAmenities(Amenities amenities)
+        public async Task<ActionResult<Amenities>> PostAmenities(AmenitiesDTO amenities)
         {
-            AmenitiesDTO newAmenity = await _amenties.Create(amenities);
+            var newAmenity = await _amenties.Create(amenities);
 
             return Ok(newAmenity);
         }

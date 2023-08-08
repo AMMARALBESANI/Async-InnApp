@@ -7,13 +7,13 @@ namespace HotelAppDemo.Model.Interfaces
     /// </summary>
     public interface IRoom
     {
-        Task<RoomDTO> Create (Room room);
+        Task<Room> Create (RoomDTO room);
 
         Task<List<RoomDTO>> GetRooms();
 
         Task<RoomDTO> GetRoom(int id);
 
-        Task<RoomDTO> UpdateRoom(int id, Room room);
+        Task<RoomDTO> UpdateRoom(int id, RoomDTO room);
 
         Task DeleteRoom(int id);
 

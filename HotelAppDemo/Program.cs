@@ -4,6 +4,7 @@ using HotelAppDemo.Data;
 using HotelAppDemo.Model;
 using HotelAppDemo.Model.Interfaces;
 using HotelAppDemo.Model.services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace HotelAppDemo
@@ -30,6 +31,16 @@ namespace HotelAppDemo
                 .AddDbContext<HotelDbContext>
                 // to tell the code we ues sqlserver
                 (options => options.UseSqlServer(connstring));
+
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+                // There are other options like this
+            })
+            .AddEntityFrameworkStores<HotelDbContext>();
+
+
+            builder.Services.AddTransient<IUser, IdentityUserService>();
 
             builder.Services.AddTransient<IHotel, HotelServices>();
 
