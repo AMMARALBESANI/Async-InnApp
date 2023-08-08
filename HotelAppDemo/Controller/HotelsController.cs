@@ -47,9 +47,9 @@ namespace HotelAppDemo.Controller
         // PUT: api/Hotels/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutHotel(int id, Hotel hotel)
+        public async Task<IActionResult> PutHotel(int id, HotelDTO hotel)
         {
-            if (id != hotel.Id)
+            if (id != hotel.ID)
             {
                 return BadRequest();
             }
@@ -62,9 +62,9 @@ namespace HotelAppDemo.Controller
         // POST: api/Hotels
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<HotelDTO>> PostHotel(Hotel hotel)
+        public async Task<ActionResult<HotelDTO>> PostHotel(HotelDTO hotel)
         {
-            HotelDTO newHotel = await _hotel.Create(hotel);
+            var newHotel = await _hotel.Create(hotel);
 
             return Ok(newHotel);
         }

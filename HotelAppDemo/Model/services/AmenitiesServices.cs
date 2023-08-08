@@ -20,19 +20,22 @@ namespace AmemitiesAppDemo.Model.services
         /// </summary>
         /// <param name="amenity">The Amenities object to be created.</param>
         /// <returns>An AmenitiesDTO object representing the created Amenities record.</returns>
-        public async Task<AmenitiesDTO> Create(Amenities amenity)
+        public async Task<Amenities> Create(AmenitiesDTO amenitydto)
         {
+            
+
+            var amenity = new Amenities
+            {
+               Id=amenitydto.ID,
+               Name=amenitydto.Name,
+                
+            };
+
             _context.Entry(amenity).State = EntityState.Added;
 
             await _context.SaveChangesAsync();
 
-            AmenitiesDTO amenityDto = new AmenitiesDTO
-            {
-                ID = amenity.Id,
-                Name = amenity.Name
-            };
-
-            return amenityDto;
+            return amenity;
         }
 
         /// <summary>
@@ -45,8 +48,11 @@ namespace AmemitiesAppDemo.Model.services
             return await _context.amenities.Select(a => new AmenitiesDTO
             {
                 ID = a.Id,
-                Name = a.Name,
-            }).FirstOrDefaultAsync(x => x.ID == id);
+                Name = a.Name
+               
+            }
+            ).FirstOrDefaultAsync(x => x.ID == id);
+
         }
 
         /// <summary>
@@ -68,18 +74,19 @@ namespace AmemitiesAppDemo.Model.services
         /// <param name="id">The id of the Amenities to update.</param>
         /// <param name="amenity">The updated Amenities object.</param>
         /// <returns>An AmenitiesDTO object representing the updated Amenities record.</returns>
-        public async Task<AmenitiesDTO> UpdateAmenities(int id, Amenities amenity)
+        public async Task<AmenitiesDTO> UpdateAmenities(int id, AmenitiesDTO amenitydto)
         {
-            AmenitiesDTO amenityDto = new AmenitiesDTO
+            Amenities amenity = new Amenities
             {
-                ID = amenity.Id,
-                Name = amenity.Name
+                Id = amenitydto.ID,
+                Name = amenitydto.Name
+              
             };
             _context.Entry(amenity).State = EntityState.Modified;
 
             await _context.SaveChangesAsync();
 
-            return amenityDto;
+            return amenitydto;
         }
 
         /// <summary>

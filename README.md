@@ -627,6 +627,12 @@ app.UseSwaggerUI( options => {
 
 > Note That : Set RoutePrefix to "" to make your API Documentation the Home Page for your API
 
+## Adding identity Authenticate
+
+
+
+ASP.NET Core Identity provides a framework for managing and storing user accounts in ASP.NET Core apps. Identity is added to your project when Individual User Accounts is selected as the authentication mechanism. By default, Identity makes use of an Entity Framework (EF) Core data model
+and we create register and login methods to our app
 
 
 
