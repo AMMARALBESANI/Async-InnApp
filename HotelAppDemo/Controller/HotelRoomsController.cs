@@ -9,6 +9,7 @@ using HotelAppDemo.Data;
 using HotelAppDemo.Model;
 using HotelAppDemo.Model.Interfaces;
 using HotelAppDemo.Model.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HotelAppDemo.Controller
 {
@@ -24,6 +25,7 @@ namespace HotelAppDemo.Controller
         }
 
         // GET: api/HotelRooms/1/Rooms
+        [Authorize(Policy = "read")]
         [HttpGet("/api/Hotels/{hotelId}/Rooms")]
         public async Task<ActionResult<HotelRoomDTO>> GetHotelRooms(int hotelId)
         {
@@ -32,6 +34,7 @@ namespace HotelAppDemo.Controller
         }
 
         // POST: api/HotelRooms/1/Rooms
+        [Authorize(Policy = "create")]
         [HttpPost("/api/Hotels/{hotelId}/Rooms")]
         public async Task<ActionResult<HotelRoomDTO>> PostHotelRoom(int hotelId, HotelRoomDTO hr)
         {
@@ -40,6 +43,7 @@ namespace HotelAppDemo.Controller
         }
 
         // GET: api/HotelRooms/1/Rooms/1
+        [Authorize(Policy = "read")]
         [HttpGet("/api/Hotels/{hotelId}/Rooms/{roomNumber}")]
         public async Task<IActionResult> GetRoomDetails(int hotelId, int roomNumber)
         {
@@ -48,6 +52,7 @@ namespace HotelAppDemo.Controller
         }
 
         // PUT: api/HotelRooms/1/Rooms/1
+        [Authorize(Policy = "update")]
         [HttpPut("/api/Hotels/{hotelId}/Rooms/{roomNumber}")]
         public async Task<IActionResult> PutHotelRoom(int hotelId, int roomNumber, HotelRoomDTO hr)
         {
@@ -56,6 +61,7 @@ namespace HotelAppDemo.Controller
         }
 
         // DELETE: api/HotelRooms/5/1
+        [Authorize(Policy = "delete")]
         [HttpDelete("/api/Hotels/{hotelId}/Rooms/{roomNumber}")]
         public async Task<IActionResult> DeleteHotelRoom(int hotelId, int roomNumber)
         {

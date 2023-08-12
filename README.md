@@ -628,3 +628,8 @@ app.UseSwaggerUI( options => {
 
 ASP.NET Core Identity provides a framework for managing and storing user accounts in ASP.NET Core apps. Identity is added to your project when Individual User Accounts is selected as the authentication mechanism. By default, Identity makes use of an Entity Framework (EF) Core data model
 and we create register and login methods to our app
+
+## Adding JWT, Claim and Roles
+
+in this update we add JWT to securely transmitting information between a client and a server in a stateless manner.
+and we add roles to give some premissions to every roles and we add claim to make authentication and authorization process more flexible .

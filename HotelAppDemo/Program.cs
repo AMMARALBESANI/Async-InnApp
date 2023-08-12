@@ -4,8 +4,10 @@ using HotelAppDemo.Data;
 using HotelAppDemo.Model;
 using HotelAppDemo.Model.Interfaces;
 using HotelAppDemo.Model.services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace HotelAppDemo
 {
@@ -39,7 +41,6 @@ namespace HotelAppDemo
             })
             .AddEntityFrameworkStores<HotelDbContext>();
 
-
             builder.Services.AddTransient<IUser, IdentityUserService>();
 
             builder.Services.AddTransient<IHotel, HotelServices>();
@@ -49,6 +50,27 @@ namespace HotelAppDemo
             builder.Services.AddTransient<IAmenities,AmenitiesServices>();
 
             builder.Services.AddTransient<IHotelRoom, HotelRoomServices>();
+
+            builder.Services.AddScoped<jwtTokenServices>();
+
+
+            builder.Services.AddAuthentication(options =>
+            {
+             options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+             options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = jwtTokenServices.GetValidationParameters(builder.Configuration);
+            });
+
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("create", policy => policy.RequireClaim("persmissions", "create"));
+                options.AddPolicy("update", policy => policy.RequireClaim("persmissions", "update"));
+                options.AddPolicy("delete", policy => policy.RequireClaim("persmissions", "delete"));
+                options.AddPolicy("read", policy => policy.RequireClaim("persmissions", "read"));
+            });
 
             builder.Services.AddSwaggerGen(options =>
             {
@@ -62,6 +84,10 @@ namespace HotelAppDemo
             });
 
             var app = builder.Build();
+
+             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
             //9-a- add this statment 
             app.UseSwagger(options =>
             {

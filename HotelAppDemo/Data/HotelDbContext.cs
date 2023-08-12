@@ -1,8 +1,10 @@
 ﻿using HotelAppDemo.Model;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace HotelAppDemo.Data
 {
@@ -55,7 +57,12 @@ namespace HotelAppDemo.Data
                 ) ;
 
 
-                 modelBuilder.Entity<HotelRoom>().HasKey(
+            SeedRole(modelBuilder, "DistrictManager", "create", "update", "delete", "read");
+            SeedRole(modelBuilder, "PropertyManager", "create", "update", "read");
+            SeedRole(modelBuilder, "Agent", "update", "read");
+            SeedRole(modelBuilder, "AnonymousUsers", "read");
+
+            modelBuilder.Entity<HotelRoom>().HasKey(
                   hotelRoom => new { 
 
                    hotelRoom.HotelId,
@@ -67,7 +74,31 @@ namespace HotelAppDemo.Data
 
         }
 
-     
+        int nextId=1;
+        private void SeedRole(ModelBuilder modelBuilder , string roleName , params string[] permissions)
+        {
+            var role = new IdentityRole
+            {
+                Id = roleName.ToLower(),
+                Name = roleName,
+                NormalizedName = roleName.ToUpper(),
+                ConcurrencyStamp = Guid.Empty.ToString()
+            };
+
+            var roleClaim = permissions.Select(permissions =>
+            new IdentityRoleClaim<string>
+            {
+                Id=nextId++,
+                RoleId=role.Id,
+                ClaimType= "permissions",
+                ClaimValue= permissions
+            }
+            ).ToArray();
+
+            modelBuilder.Entity<IdentityRole>().HasData(role);
+
+            
+        }
         
         //6- we create clases and add the attriput intit then we add it here like this
         public DbSet<Hotel> hotel { get; set; }
@@ -77,6 +108,7 @@ namespace HotelAppDemo.Data
         public DbSet<Amenities> amenities { get; set; } 
 
         public DbSet <RoomAmenity> roomAmenities { get; set; }
+
         public DbSet <HotelRoom> hotelRooms { get; set; }
 
 

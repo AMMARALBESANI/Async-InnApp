@@ -4,12 +4,13 @@
     "\\HotelAppDemo",
     "\\HotelAppDemo\\Controller",
     "\\HotelAppDemo\\Data",
+    "\\HotelAppDemo\\Migrations",
     "\\HotelAppDemo\\Model",
     "\\HotelAppDemo\\Model\\DTO",
     "\\HotelAppDemo\\Model\\Interfaces",
     "\\HotelAppDemo\\Model\\services",
     "\\TestAsync-Inn Hotel"
   ],
-  "SelectedNode": "\\HotelAppDemo\\Controller\\UserController.cs",
+  "SelectedNode": "\\HotelAppDemo.sln",
   "PreviewInSolutionExplorer": false
 }

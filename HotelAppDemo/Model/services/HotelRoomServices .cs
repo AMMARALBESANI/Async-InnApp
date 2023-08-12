@@ -58,26 +58,35 @@ namespace HotelAppDemo.Model.services
         }
         public async Task<HotelRoomDTO> RoomDetails(int hotelId, int roomNumber)
         {
-            var roomDetails = await _context.hotelRooms
-               .Where(hr => hr.HotelId == hotelId && hr.RoomNumber == roomNumber)
-               .FirstAsync();
+            var hotelRoomDTO = await _context.hotelRooms
+                .Where(hr => hr.HotelId == hotelId && hr.RoomNumber == roomNumber)
+                .Select(hr => new HotelRoomDTO
+                {
+                    HotelID = hotelId,
+                    RoomNumber = roomNumber,
+                    RoomID = hr.RoomId,
+                    Rate = hr.Rate,
+                    PetFriendly = hr.PetFrienndly,
+                   
+                    Room = new RoomDTO
+                    {
+                        ID = hr.Room.Id,
+                        Name = hr.Room.Name,
+                        Layout = hr.Room.layout,
+                        Amenities = _context.roomAmenities
+                            .Where(ra => ra.RoomId == hr.RoomId)
+                            .Select(ra => new AmenitiesDTO
+                            {
+                                ID = ra.Amenity.Id,
+                                Name = ra.Amenity.Name
+                            }).ToList()
+                    }
+                })
+                .FirstOrDefaultAsync();
 
-            var hotelRoom = await _context.hotelRooms.Include(r => r.Room)
-                                                           .ThenInclude(am => am.RoomAmenities)
-                                                           .ThenInclude(a => a.Amenity)
-                                                           .Where(h => h.HotelId == roomDetails.HotelId && h.RoomId == roomDetails.RoomId)
-                                                           .FirstAsync();
-
-            var hotelroomdto = new HotelRoomDTO
-            {
-                HotelID = hotelId,
-                RoomNumber = roomNumber,
-                RoomID = hotelRoom.RoomId,
-                Rate = hotelRoom.Rate,
-                PetFriendly = hotelRoom.PetFrienndly
-            };
-            return hotelroomdto;
+            return hotelRoomDTO;
         }
+
 
         public async Task<HotelRoomDTO> UpdateRoomDetails(int hotelId, int roomNumber, HotelRoomDTO hr)
         {

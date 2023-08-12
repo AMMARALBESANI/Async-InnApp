@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "piOb6oweuTxsJFSLaAWxXxc8ftfrUb/PqJT+JbATOJHLpNMnOd2b/AFzU/mC5sBh5yko2W4xLJYeI/tS3F3X0g==",
+  "dgSpecHash": "lIMcXcGxyiPh2KhmYmhBKVSGw8laNRUZ0MGVe+oF84mUm5ayFjGU6eVshqYvu5FrVL/HunX28j89yfUs5byQyg==",
   "success": true,
   "projectFilePath": "C:\\Users\\ammar\\Source\\Repos\\Async-InnApp\\HotelAppDemo\\HotelAppDemo.csproj",
   "expectedPackageFiles": [
@@ -56,6 +56,7 @@
     "C:\\Users\\ammar\\.nuget\\packages\\humanizer.core.zh-cn\\2.14.1\\humanizer.core.zh-cn.2.14.1.nupkg.sha512",
     "C:\\Users\\ammar\\.nuget\\packages\\humanizer.core.zh-hans\\2.14.1\\humanizer.core.zh-hans.2.14.1.nupkg.sha512",
     "C:\\Users\\ammar\\.nuget\\packages\\humanizer.core.zh-hant\\2.14.1\\humanizer.core.zh-hant.2.14.1.nupkg.sha512",
+    "C:\\Users\\ammar\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.10\\microsoft.aspnetcore.authentication.jwtbearer.7.0.10.nupkg.sha512",
     "C:\\Users\\ammar\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.10\\microsoft.aspnetcore.cryptography.internal.7.0.10.nupkg.sha512",
     "C:\\Users\\ammar\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.10\\microsoft.aspnetcore.cryptography.keyderivation.7.0.10.nupkg.sha512",
     "C:\\Users\\ammar\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\7.0.10\\microsoft.aspnetcore.identity.entityframeworkcore.7.0.10.nupkg.sha512",

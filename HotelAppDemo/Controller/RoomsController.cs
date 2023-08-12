@@ -9,6 +9,7 @@ using HotelAppDemo.Data;
 using HotelAppDemo.Model;
 using HotelAppDemo.Model.Interfaces;
 using HotelAppDemo.Model.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HotelAppDemo.Controller
 {
@@ -24,6 +25,7 @@ namespace HotelAppDemo.Controller
         }
 
         // GET: api/Rooms
+        [Authorize(Policy = "read")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RoomDTO>>> Getroom()
         {
@@ -31,6 +33,7 @@ namespace HotelAppDemo.Controller
         }
 
         // GET: api/Rooms/5
+        [Authorize(Policy = "read")]
         [HttpGet("{id}")]
         public async Task<ActionResult<RoomDTO>> GetRoom(int id)
         {
@@ -40,6 +43,7 @@ namespace HotelAppDemo.Controller
 
         // PUT: api/Rooms/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Policy = "update")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRoom(int id, RoomDTO room)
         {
@@ -54,6 +58,7 @@ namespace HotelAppDemo.Controller
 
         // POST: api/Rooms
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Policy = "create")]
         [HttpPost]
         public async Task<ActionResult<RoomDTO>> PostRoom(RoomDTO roomdto)
         {
@@ -70,6 +75,7 @@ namespace HotelAppDemo.Controller
         }
 
         // DELETE: api/Rooms/5
+        [Authorize(Policy = "delete")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRoom(int id)
         {
@@ -79,6 +85,7 @@ namespace HotelAppDemo.Controller
 
         [HttpPost]
         [Route("{roomId}/Amenity/{amenityId}")]
+        [Authorize(Policy = "create")]
         public async Task<IActionResult> AddAmenityToRoom(int roomId, int amenityId)
         {
             await _room.AddAmenityToRoom(roomId, amenityId);
@@ -89,6 +96,7 @@ namespace HotelAppDemo.Controller
         // DELETE : api/Rooms/5/Amenity/5
         [HttpDelete]
         [Route("{roomId}/Amenity/{amenityId}")]
+        [Authorize(Policy = "delete")]
         public async Task<IActionResult> RemoveAmentityFromRoom(int roomId, int amenityId)
         {
             await _room.RemoveAmentityFromRoom(roomId, amenityId);
