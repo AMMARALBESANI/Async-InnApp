@@ -9,6 +9,7 @@ using HotelAppDemo.Data;
 using HotelAppDemo.Model;
 using HotelAppDemo.Model.Interfaces;
 using HotelAppDemo.Model.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HotelAppDemo.Controller
 {
@@ -24,6 +25,7 @@ namespace HotelAppDemo.Controller
         }
 
         // GET: api/Hotels
+        [Authorize(Policy = "read")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<HotelDTO>>> Gethotel()
         {
@@ -34,6 +36,7 @@ namespace HotelAppDemo.Controller
         }
 
         // GET: api/Hotels/5
+        [Authorize(Policy = "read")]
         [HttpGet("{id}")]
         public async Task<ActionResult<HotelDTO>> GetHotel(int id)
         {
@@ -46,6 +49,7 @@ namespace HotelAppDemo.Controller
 
         // PUT: api/Hotels/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Policy = "update")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutHotel(int id, HotelDTO hotel)
         {
@@ -61,6 +65,7 @@ namespace HotelAppDemo.Controller
 
         // POST: api/Hotels
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Policy = "create")]
         [HttpPost]
         public async Task<ActionResult<HotelDTO>> PostHotel(HotelDTO hotel)
         {
@@ -70,6 +75,7 @@ namespace HotelAppDemo.Controller
         }
 
         // DELETE: api/Hotels/5
+        [Authorize(Policy = "delete")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteHotel(int id)
         {

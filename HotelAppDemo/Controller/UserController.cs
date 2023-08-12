@@ -1,6 +1,8 @@
 ﻿using HotelAppDemo.Model.DTO;
 using HotelAppDemo.Model.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotelAppDemo.Controller
@@ -14,7 +16,7 @@ namespace HotelAppDemo.Controller
         {
             userservise = service;
         }
-
+        [AllowAnonymous]
         [HttpPost("Register")]
         public async Task<ActionResult<UserDTO>> Register(RegisterUserDTO Data)
         {
@@ -28,7 +30,7 @@ namespace HotelAppDemo.Controller
             return BadRequest(new ValidationProblemDetails(ModelState));
 
         }
-
+        [AllowAnonymous]
         [HttpPost("Login")]
         public async Task<ActionResult<UserDTO>> Login(LoginDTO loginDto)
         {
@@ -39,6 +41,14 @@ namespace HotelAppDemo.Controller
                 return Unauthorized();
             }
             return user;
+        }
+
+
+        [Authorize(Policy ="create")]
+        [HttpGet("Profile")]
+        public async Task<ActionResult<UserDTO>> Profile ()
+        {
+            return await userservise.GetUser(this.User);
         }
 
     }

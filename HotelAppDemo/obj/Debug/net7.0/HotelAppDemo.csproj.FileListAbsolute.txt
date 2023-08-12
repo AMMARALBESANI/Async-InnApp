@@ -508,3 +508,4 @@ C:\Users\ammar\Source\Repos\Async-InnApp\HotelAppDemo\bin\Debug\net7.0\Microsoft
 C:\Users\ammar\Source\Repos\Async-InnApp\HotelAppDemo\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\ammar\Source\Repos\Async-InnApp\HotelAppDemo\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\ammar\Source\Repos\Async-InnApp\HotelAppDemo\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+C:\Users\ammar\Source\Repos\Async-InnApp\HotelAppDemo\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

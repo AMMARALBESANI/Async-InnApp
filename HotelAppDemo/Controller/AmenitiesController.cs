@@ -9,6 +9,7 @@ using HotelAppDemo.Data;
 using HotelAppDemo.Model;
 using HotelAppDemo.Model.Interfaces;
 using HotelAppDemo.Model.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HotelAppDemo.Controller
 {
@@ -24,6 +25,7 @@ namespace HotelAppDemo.Controller
         }
 
         // GET: api/Amenities
+        [Authorize(Policy = "create")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AmenitiesDTO>>> Getamenities()
         {
@@ -33,6 +35,7 @@ namespace HotelAppDemo.Controller
         }
 
         // GET: api/Amenities/5
+        [Authorize(Policy = "create")]
         [HttpGet("{id}")]
         public async Task<ActionResult<AmenitiesDTO>> GetAmenities(int id)
         {
@@ -42,6 +45,7 @@ namespace HotelAppDemo.Controller
 
         // PUT: api/Amenities/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Policy = "update")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAmenities(int id, AmenitiesDTO amenities)
         {
@@ -57,6 +61,7 @@ namespace HotelAppDemo.Controller
 
         // POST: api/Amenities
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Policy = "create")]
         [HttpPost]
         public async Task<ActionResult<Amenities>> PostAmenities(AmenitiesDTO amenities)
         {
@@ -66,6 +71,7 @@ namespace HotelAppDemo.Controller
         }
 
         // DELETE: api/Amenities/5
+        [Authorize(Policy = "delete")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAmenities(int id)
         {
